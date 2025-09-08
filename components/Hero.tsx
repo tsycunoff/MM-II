@@ -53,7 +53,7 @@ const Hero: React.FC<{ onTryFreeClick: () => void }> = ({ onTryFreeClick }) => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
             
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.9] mb-8" style={{ color: '#1e293b' }}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.9] mb-8" style={{ color: '#1E3A5F' }}>
               <span className="block">Повысьте рейтинг</span>
               <span className="block">автосервиса</span>
               <span className="block">и верните до</span>
@@ -145,12 +145,12 @@ const Hero: React.FC<{ onTryFreeClick: () => void }> = ({ onTryFreeClick }) => {
             </div>
           </div>
           
-          {/* iPhone 16 Pro с увеличенным экраном */}
+          {/* iPhone 16 Pro с правильными пропорциями */}
           <div className={`relative w-full max-w-xs mx-auto transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`} style={{ animationDelay: '0.3s' }}>
-            <div className="relative bg-slate-900 p-0.5 rounded-[3rem] shadow-2xl" style={{ aspectRatio: '9/19.5', minHeight: '750px' }}>
-              <div className="relative bg-white rounded-[2.9rem] overflow-hidden h-full">
+            <div className="relative bg-slate-900 p-1 rounded-[3.5rem] shadow-2xl w-[320px] h-[680px] lg:w-[340px] lg:h-[720px]">
+              <div className="relative bg-white rounded-[3.25rem] overflow-hidden h-full flex flex-col">
                 {/* Dynamic Island */}
                 <div className={`absolute top-3 left-1/2 transform -translate-x-1/2 bg-black z-20 transition-all duration-700 ease-out ${
                     isIslandExpanded ? 'w-48 h-9' : 'w-32 h-7'
@@ -165,53 +165,51 @@ const Hero: React.FC<{ onTryFreeClick: () => void }> = ({ onTryFreeClick }) => {
                     )}
                 </div>
                 
-                <div className="h-full flex flex-col pt-16 pb-4">
-                  {/* WhatsApp Header */}
-                  <div className="bg-gradient-to-r from-slate-100 to-slate-50 p-4 flex items-center gap-3 border-b border-slate-200 flex-shrink-0">
-                    <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center shadow-md">
-                        <WhatsAppIcon className="w-6 h-6 text-white"/>
-                    </div>
-                    <div>
-                      <p className="font-bold text-base text-slate-800">Ваш Автосервис</p>
-                      <p className="text-xs text-green-600 flex items-center gap-1">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        онлайн
-                      </p>
-                    </div>
+                {/* WhatsApp Header */}
+                <div className="bg-gradient-to-r from-slate-100 to-slate-50 p-4 flex items-center gap-3 border-b border-slate-200 flex-shrink-0 pt-12">
+                  <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center shadow-md">
+                      <WhatsAppIcon className="w-6 h-6 text-white"/>
                   </div>
-                  
-                  {/* Chat Messages - увеличенная область */}
-                  <div className="p-4 space-y-4 bg-gradient-to-b from-slate-50 to-slate-100 flex-1 min-h-0">
-                    <div className={`transform transition-all duration-1000 ${chatStep >= 1 ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
-                      <div className="bg-white p-4 rounded-2xl rounded-bl-lg max-w-[85%] shadow-sm border border-slate-200">
-                        <p className="text-sm text-slate-800 leading-relaxed">Здравствуйте! Оцените, пожалуйста, качество нашего обслуживания от 1 до 5 ⭐</p>
-                      </div>
-                    </div>
-
-                    <div className={`flex justify-end transform transition-all duration-1000 ${chatStep >= 2 ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
-                      <div className="bg-blue-500 text-white p-4 rounded-2xl rounded-br-lg shadow-sm max-w-[75%]">
-                        <p className="text-base font-medium">⭐⭐⭐⭐⭐</p>
-                      </div>
-                    </div>
-
-                    <div className={`transform transition-all duration-1000 ${chatStep >= 3 ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
-                      <div className="bg-white p-4 rounded-2xl rounded-bl-lg max-w-[85%] shadow-sm border border-slate-200">
-                        <p className="text-sm text-slate-800 mb-3 leading-relaxed">Спасибо! Будем рады, если оставите отзыв на Яндекс.Картах 🙏</p>
-                        <a href="#" className="inline-flex items-center gap-2 text-sm text-blue-600 font-medium bg-blue-50 px-3 py-2 rounded-lg hover:bg-blue-100 transition-colors">
-                          <span>Оставить отзыв</span>
-                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </a>
-                      </div>
+                  <div>
+                    <p className="font-bold text-base text-slate-800">Ваш Автосервис</p>
+                    <p className="text-xs text-green-600 flex items-center gap-1">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      онлайн
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Chat Messages - заполняет оставшееся пространство */}
+                <div className="p-4 space-y-4 bg-gradient-to-b from-slate-50 to-slate-100 flex-1">
+                  <div className={`transform transition-all duration-1000 ${chatStep >= 1 ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
+                    <div className="bg-white p-4 rounded-2xl rounded-bl-lg max-w-[85%] shadow-sm border border-slate-200">
+                      <p className="text-sm text-slate-800 leading-relaxed">Здравствуйте! Оцените, пожалуйста, качество нашего обслуживания от 1 до 5 ⭐</p>
                     </div>
                   </div>
 
-                  {/* Home indicator как на iPhone */}
-                  <div className="flex justify-center py-2 flex-shrink-0">
-                    <div className="w-32 h-1 bg-slate-300 rounded-full"></div>
+                  <div className={`flex justify-end transform transition-all duration-1000 ${chatStep >= 2 ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
+                    <div className="bg-blue-500 text-white p-4 rounded-2xl rounded-br-lg shadow-sm max-w-[75%]">
+                      <p className="text-base font-medium">⭐⭐⭐⭐⭐</p>
+                    </div>
                   </div>
+
+                  <div className={`transform transition-all duration-1000 ${chatStep >= 3 ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
+                    <div className="bg-white p-4 rounded-2xl rounded-bl-lg max-w-[85%] shadow-sm border border-slate-200">
+                      <p className="text-sm text-slate-800 mb-3 leading-relaxed">Спасибо! Будем рады, если оставите отзыв на Яндекс.Картах 🙏</p>
+                      <a href="#" className="inline-flex items-center gap-2 text-sm text-blue-600 font-medium bg-blue-50 px-3 py-2 rounded-lg hover:bg-blue-100 transition-colors">
+                        <span>Оставить отзыв</span>
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Home indicator */}
+                <div className="flex justify-center py-2 flex-shrink-0">
+                  <div className="w-32 h-1 bg-slate-300 rounded-full"></div>
                 </div>
               </div>
             </div>
