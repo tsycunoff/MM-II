@@ -97,9 +97,9 @@ const Hero: React.FC<{ onTryFreeClick: () => void }> = ({ onTryFreeClick }) => {
                 {/* Логотипы автосервисов с fallback на A B C */}
                 <div className="w-12 h-12 bg-white rounded-full border-3 border-white shadow-lg flex items-center justify-center overflow-hidden">
                   <img 
-                    src="https://pnevmopodveska1.ru/template/img/logo-footer.svg" 
+                    src="https://pnevmopodveska1.ru/template/img/logo.svg" 
                     alt="Автосервис"
-                    className="w-8 h-8 object-contain"
+                    className="max-w-full max-h-full object-contain p-1"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';

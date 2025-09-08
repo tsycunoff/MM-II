@@ -142,7 +142,15 @@ const HowItWorks: React.FC = () => {
   return (
     <section ref={sectionRef} id="how-it-works" className="py-20 md:py-32 bg-gradient-to-b from-secondary-50 via-background to-primary-50 relative overflow-hidden">
       {/* Background elements */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      {/* FIX: Replaced styled-jsx with an inline style object to resolve TypeScript error. */}
+      <div
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, #f1f5f9 1px, transparent 1px), linear-gradient(to bottom, #f1f5f9 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+        }}
+      ></div>
       <div className="absolute top-20 right-1/4 w-64 h-64 bg-accent-200 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div>
       <div className="absolute bottom-20 left-1/4 w-64 h-64 bg-primary-200 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div>
 
@@ -215,15 +223,6 @@ const HowItWorks: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .bg-grid-pattern {
-          background-image: 
-            linear-gradient(to right, #f1f5f9 1px, transparent 1px),
-            linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-      `}</style>
     </section>
   );
 };
