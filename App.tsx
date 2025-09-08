@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, memo } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -11,6 +10,9 @@ import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import CallToAction from './components/CallToAction';
+import SaaSDescription from './components/SaaSDescription';
+import ScrollProgress from './components/ScrollProgress';
+import AnchorNavigation from './components/AnchorNavigation';
 
 const RequestFormModal: React.FC<{ onClose: () => void }> = memo(({ onClose }) => {
     const [formData, setFormData] = useState({
@@ -39,13 +41,13 @@ const RequestFormModal: React.FC<{ onClose: () => void }> = memo(({ onClose }) =
 
     return (
         <div 
-            className="fixed inset-0 z-50 bg-black/80 animate-fade-in"
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
             onClick={onClose}
             aria-modal="true"
             role="dialog"
         >
             <div 
-                className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 animate-fade-in rounded-lg"
+                className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-2xl duration-300 rounded-xl"
                 onClick={e => e.stopPropagation()}
             >
                 {isSuccess ? (
@@ -61,29 +63,65 @@ const RequestFormModal: React.FC<{ onClose: () => void }> = memo(({ onClose }) =
                 ) : (
                     <>
                         <div className="flex flex-col space-y-1.5 text-center sm:text-left">
-                            <h2 className="text-lg font-semibold leading-none tracking-tight">Заявка на подключение</h2>
-                            <p className="text-sm text-muted-foreground">Оставьте ваши данные, и мы свяжемся с вами.</p>
+                            <h2 className="text-xl font-bold leading-none tracking-tight text-primary">Заявка на подключение</h2>
+                            <p className="text-sm text-muted-foreground">Оставьте ваши данные, и мы свяжемся с вами в течение часа.</p>
                         </div>
-                        <form onSubmit={handleSubmit} className="grid gap-4 py-4">
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <label htmlFor="name" className="text-right text-sm font-medium">Имя</label>
-                                <input id="name" name="name" required value={formData.name} onChange={handleInputChange} className="col-span-3 h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="Ваше имя" />
+                        <form onSubmit={handleSubmit} className="grid gap-6 py-4">
+                            <div className="grid gap-2">
+                                <label htmlFor="name" className="text-sm font-medium text-foreground">Имя *</label>
+                                <input 
+                                    id="name" 
+                                    name="name" 
+                                    required 
+                                    value={formData.name} 
+                                    onChange={handleInputChange} 
+                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-all" 
+                                    placeholder="Ваше имя" 
+                                />
                             </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <label htmlFor="phone" className="text-right text-sm font-medium">Телефон</label>
-                                <input id="phone" name="phone" type="tel" required value={formData.phone} onChange={handleInputChange} className="col-span-3 h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="+7 (999) 123-45-67" />
+                            <div className="grid gap-2">
+                                <label htmlFor="phone" className="text-sm font-medium text-foreground">Телефон *</label>
+                                <input 
+                                    id="phone" 
+                                    name="phone" 
+                                    type="tel" 
+                                    required 
+                                    value={formData.phone} 
+                                    onChange={handleInputChange} 
+                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-all" 
+                                    placeholder="+7 (999) 123-45-67" 
+                                />
                             </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <label htmlFor="email" className="text-right text-sm font-medium">Email</label>
-                                <input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} className="col-span-3 h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="your@email.com" />
+                            <div className="grid gap-2">
+                                <label htmlFor="email" className="text-sm font-medium text-foreground">Email</label>
+                                <input 
+                                    id="email" 
+                                    name="email" 
+                                    type="email" 
+                                    value={formData.email} 
+                                    onChange={handleInputChange} 
+                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-all" 
+                                    placeholder="your@email.com" 
+                                />
                             </div>
-                             <div className="grid grid-cols-4 items-center gap-4">
-                                <label htmlFor="telegram" className="text-right text-sm font-medium">Telegram</label>
-                                <input id="telegram" name="telegram" value={formData.telegram} onChange={handleInputChange} className="col-span-3 h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" placeholder="@username" />
+                            <div className="grid gap-2">
+                                <label htmlFor="telegram" className="text-sm font-medium text-foreground">Telegram</label>
+                                <input 
+                                    id="telegram" 
+                                    name="telegram" 
+                                    value={formData.telegram} 
+                                    onChange={handleInputChange} 
+                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-all" 
+                                    placeholder="@username" 
+                                />
                             </div>
                         
-                            <div className="flex justify-end pt-4">
-                                <button type="submit" disabled={isSubmitting} className="inline-flex items-center justify-center rounded-md text-sm font-bold ring-offset-background transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-accent text-accent-foreground hover:bg-accent/90 h-10 px-4 py-2 w-full border-b-4 border-accent-dark active:border-b-0 active:translate-y-1">
+                            <div className="pt-2">
+                                <button 
+                                    type="submit" 
+                                    disabled={isSubmitting} 
+                                    className="inline-flex items-center justify-center rounded-lg text-base font-bold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-yellow-400 text-blue-900 hover:bg-yellow-500 h-12 px-6 w-full shadow-lg group"
+                                >
                                     {isSubmitting ? (
                                         <div className="flex items-center justify-center">
                                             <svg className="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -92,11 +130,22 @@ const RequestFormModal: React.FC<{ onClose: () => void }> = memo(({ onClose }) =
                                             </svg>
                                             Отправляем...
                                         </div>
-                                    ) : 'Отправить заявку'}
+                                    ) : (
+                                        <>
+                                            <span>Отправить заявку</span>
+                                            <svg className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                            </svg>
+                                        </>
+                                    )}
                                 </button>
                             </div>
                         </form>
-                         <button onClick={onClose} className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none" aria-label="Close modal">
+                        <button 
+                            onClick={onClose} 
+                            className="absolute right-4 top-4 rounded-lg opacity-70 ring-offset-background transition-all hover:opacity-100 hover:bg-gray-100 p-2 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none" 
+                            aria-label="Закрыть"
+                        >
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -117,13 +166,16 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-background font-sans text-foreground antialiased">
+      <ScrollProgress />
       <Header onConnectClick={openModal} />
+      <AnchorNavigation />
       <main>
         <Hero onTryFreeClick={openModal} />
         <Problems />
         <Solution />
         <HowItWorks />
         <Results />
+        <SaaSDescription />
         <Features />
         <Pricing onConnectClick={openModal} />
         <FAQ />
