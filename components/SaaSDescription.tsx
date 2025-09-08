@@ -59,7 +59,7 @@ const SaaSDescription: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-20 bg-gradient-to-br from-secondary via-background to-accent-50/30 relative overflow-hidden">
+    <section id="saas" ref={sectionRef} className="py-16 md:py-20 bg-gradient-to-br from-secondary via-background to-accent-50/30 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-10 right-10 w-20 h-20 bg-primary/5 rounded-full blur-xl animate-float"></div>

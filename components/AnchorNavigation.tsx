@@ -8,14 +8,14 @@ const AnchorNavigation: React.FC = () => {
   const lastScrollY = useRef(0);
   const animationFrame = useRef<number>();
 
-  // ИСПРАВИЛ: добавил все секции из App.tsx
+  // Правильные ID секций - с учетом реального названия компонента
   const sections = [
     { id: 'hero', label: 'Главная' },
     { id: 'problems', label: 'Проблемы' },
     { id: 'solution', label: 'Решения' },
     { id: 'how-it-works', label: 'Как работает' },
     { id: 'results', label: 'Результаты' },
-    { id: 'saasdescription', label: 'SaaS описание' },
+    { id: 'SaaSDescription', label: 'О Motor Mind' },
     { id: 'features', label: 'Возможности' },
     { id: 'pricing', label: 'Тарифы' },
     { id: 'faq', label: 'FAQ' },
@@ -46,6 +46,7 @@ const AnchorNavigation: React.FC = () => {
     else {
       let closestSection = { id: 'hero', distance: Infinity };
       
+      // Улучшенная логика для правильного определения SaaS секции
       sections.forEach(section => {
         const element = document.getElementById(section.id);
         if (element) {
@@ -53,8 +54,9 @@ const AnchorNavigation: React.FC = () => {
           const elementTop = rect.top;
           const elementHeight = rect.height;
           
-          if (elementTop <= 100 && elementTop + elementHeight > 100) {
-            const distanceFromTop = Math.abs(elementTop);
+          // Более чувствительная логика для точного определения секций
+          if (elementTop <= 120 && elementTop + elementHeight > 80) {
+            const distanceFromTop = Math.abs(elementTop - 60);
             if (distanceFromTop < closestSection.distance) {
               closestSection = { id: section.id, distance: distanceFromTop };
             }
@@ -126,14 +128,14 @@ const AnchorNavigation: React.FC = () => {
       }`}
       style={{ zIndex: 50 }}
     >
-      {/* РЕАЛЬНО уменьшенный контейнер */}
+      {/* Компактный контейнер */}
       <div className="relative">
         {/* Фоновое свечение - синее */}
         <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/8 to-blue-600/8 rounded-lg blur-sm opacity-50" />
         
-        {/* Главный контейнер - РЕАЛЬНО компактный */}
+        {/* Главный контейнер - компактный */}
         <div className="relative bg-white/90 backdrop-blur-lg border border-slate-200/60 rounded-lg p-1 shadow-lg">
-          {/* Индикатор активной секции - СИНИЙ */}
+          {/* Индикатор активной секции - синий */}
           <div 
             className="absolute left-0.5 w-0.5 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full transition-all duration-400 ease-out"
             style={{
@@ -142,7 +144,7 @@ const AnchorNavigation: React.FC = () => {
             }}
           />
           
-          {/* Кнопки навигации - РЕАЛЬНО маленькие */}
+          {/* Кнопки навигации - маленькие */}
           <div className="space-y-0.5 relative z-10">
             {sections.map((section, index) => {
               const isActive = activeSection === section.id;
@@ -160,7 +162,7 @@ const AnchorNavigation: React.FC = () => {
                     <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-2 border-transparent border-l-slate-900" />
                   </div>
 
-                  {/* РЕАЛЬНО маленькая кнопка-точка */}
+                  {/* Маленькая кнопка-точка */}
                   <button
                     onClick={() => scrollToSection(section.id)}
                     onMouseEnter={() => setHoveredSection(section.id)}
@@ -196,7 +198,7 @@ const AnchorNavigation: React.FC = () => {
                         {/* Пульсирующее кольцо */}
                         <div className="absolute inset-0 rounded-full border border-white/40 animate-ping" />
                         
-                        {/* Золотые частицы - МАЛЕНЬКИЕ */}
+                        {/* Золотые частицы - маленькие */}
                         <div className="absolute inset-0 pointer-events-none">
                           <div className="absolute top-0 left-1/2 w-0.5 h-0.5 bg-yellow-400 rounded-full animate-ping transform -translate-x-0.5" style={{ animationDelay: '0s' }} />
                           <div className="absolute bottom-0 right-0 w-0.5 h-0.5 bg-yellow-400 rounded-full animate-ping" style={{ animationDelay: '0.4s' }} />
