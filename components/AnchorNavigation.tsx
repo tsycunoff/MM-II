@@ -8,14 +8,14 @@ const AnchorNavigation: React.FC = () => {
   const lastScrollY = useRef(0);
   const animationFrame = useRef<number>();
 
-  // Правильные ID секций - с учетом реального названия компонента
+  // Правильные ID секций - исправленный ID для SaaS
   const sections = [
     { id: 'hero', label: 'Главная' },
     { id: 'problems', label: 'Проблемы' },
     { id: 'solution', label: 'Решения' },
     { id: 'how-it-works', label: 'Как работает' },
     { id: 'results', label: 'Результаты' },
-    { id: 'SaaSDescription', label: 'О Motor Mind' },
+    { id: 'saas', label: 'О Motor Mind' },
     { id: 'features', label: 'Возможности' },
     { id: 'pricing', label: 'Тарифы' },
     { id: 'faq', label: 'FAQ' },
