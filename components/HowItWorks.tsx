@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { WhatsAppIcon, StarIcon, MessageSquareIcon } from './icons';
 
-const InteractiveStep: React.FC<{
+const StepCard: React.FC<{
   step: {
     icon: React.ComponentType<any>;
     title: string;
@@ -15,79 +15,89 @@ const InteractiveStep: React.FC<{
 }> = ({ step, index, isActive, isVisible, onClick }) => {
   return (
     <div
-      className={`relative cursor-pointer transition-all duration-700 transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-      } ${isActive ? 'scale-105' : 'hover:scale-102'}`}
-      style={{ transitionDelay: `${150 * (index + 1)}ms` }}
+      className={`relative cursor-pointer transition-all duration-600 ease-out will-change-transform ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      } ${isActive ? 'scale-[1.02] z-10' : 'hover:scale-[1.01]'}`}
+      style={{ transitionDelay: `${100 * (index + 1)}ms` }}
       onClick={onClick}
     >
-      {/* Connection line */}
+      {/* Simple horizontal connection line */}
       {index < 2 && (
-        <div className="hidden lg:block absolute top-1/2 left-full w-full h-0.5 bg-gradient-to-r from-primary-300 to-transparent transform -translate-y-1/2 z-0">
-          <div className={`h-full bg-gradient-to-r from-accent-500 to-accent-300 transition-all duration-1000 ${isActive ? 'w-full' : 'w-0'}`}></div>
+        <div className="hidden lg:block absolute top-1/2 left-full w-full h-px -translate-y-1/2 z-0">
+          <div 
+            className={`h-full transition-all duration-800 ease-out ${
+              isActive ? 'w-full opacity-100' : 'w-0 opacity-60'
+            }`}
+            style={{ 
+              background: isActive 
+                ? 'linear-gradient(to right, #0D2C54, transparent)' 
+                : '#e2e8f0'
+            }}
+          />
         </div>
       )}
 
-      <div className={`relative bg-white rounded-2xl p-8 shadow-lg border-2 transition-all duration-500 ${
+      <div className={`relative bg-white rounded-xl p-6 md:p-8 border transition-all duration-600 ease-out will-change-transform ${
         isActive 
-          ? 'border-accent-400 shadow-2xl bg-gradient-to-br from-white to-accent-50' 
-          : 'border-gray-200 hover:border-primary-200 hover:shadow-xl'
+          ? 'border-[#0D2C54] shadow-xl shadow-[#0D2C54]/10' 
+          : 'border-slate-200 hover:border-slate-300 shadow-md hover:shadow-lg'
       }`}>
-        {/* Animated background */}
-        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-accent-400/10 to-primary-400/10 opacity-0 transition-opacity duration-500 ${isActive ? 'opacity-100' : ''}`}></div>
         
-        {/* Step number badge */}
-        <div className={`absolute -top-4 -left-4 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold transition-all duration-500 ${
-          isActive 
-            ? 'bg-gradient-to-r from-accent-500 to-accent-400 scale-125 shadow-lg' 
-            : 'bg-gradient-to-r from-primary-500 to-primary-400'
-        }`}>
+        {/* Clean step number */}
+        <div 
+          className={`absolute -top-3 -left-3 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold transition-all duration-600 ${
+            isActive ? 'scale-110' : ''
+          }`}
+          style={{ 
+            backgroundColor: isActive ? '#0D2C54' : '#64748b'
+          }}
+        >
           {index + 1}
         </div>
 
-        <div className="relative z-10">
-          <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 ${
-            isActive 
-              ? 'bg-gradient-to-br from-accent-500 to-accent-400 shadow-lg scale-110' 
-              : 'bg-gradient-to-br from-primary-100 to-primary-200'
-          }`}>
-            <step.icon className={`w-8 h-8 transition-colors duration-500 ${
-              isActive ? 'text-white' : 'text-primary-600'
+        <div className="relative">
+          <div 
+            className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-all duration-600 ${
+              isActive ? 'scale-105' : ''
+            }`}
+            style={{ 
+              backgroundColor: isActive ? '#0D2C54' : '#f8fafc'
+            }}
+          >
+            <step.icon className={`w-6 h-6 transition-colors duration-600 ${
+              isActive ? 'text-white' : 'text-[#0D2C54]'
             }`} />
           </div>
           
-          <h3 className={`text-xl font-bold mb-3 transition-colors duration-500 ${
-            isActive ? 'text-primary-700' : 'text-primary-600'
+          <h3 className={`text-lg font-bold mb-3 transition-colors duration-600 ${
+            isActive ? 'text-[#0D2C54]' : 'text-slate-800'
           }`}>
             {step.title}
           </h3>
           
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-sm text-muted-foreground leading-relaxed mb-3">
             {step.description}
           </p>
 
-          {/* Expanded detail */}
-          <div className={`mt-4 transition-all duration-500 overflow-hidden ${
-            isActive ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
-          }`}>
-            <div className="border-t border-accent-200 pt-4">
-              <p className="text-sm text-primary-600 font-medium">
+          {/* Clean expanding detail */}
+          <div 
+            className={`transition-all duration-600 ease-out overflow-hidden ${
+              isActive ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'
+            }`}
+          >
+            <div className="border-t border-slate-200 pt-3 mt-3">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 {step.detail}
               </p>
             </div>
           </div>
         </div>
-
-        {/* Hover glow effect */}
-        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r from-accent-500/20 to-primary-500/20 opacity-0 transition-opacity duration-500 blur-xl ${
-          isActive ? 'opacity-100' : ''
-        }`}></div>
       </div>
     </div>
   );
 };
 
-const HowItWorks: React.FC = () => {
+const HowItWorks: React.FC<{ onConnectClick: () => void }> = ({ onConnectClick }) => {
   const [isInView, setIsInView] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
@@ -121,60 +131,55 @@ const HowItWorks: React.FC = () => {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.15 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // Auto-advance steps
   useEffect(() => {
     if (isInView) {
       const interval = setInterval(() => {
         setActiveStep(prev => (prev + 1) % steps.length);
-      }, 4000);
+      }, 5000);
       
       return () => clearInterval(interval);
     }
   }, [isInView, steps.length]);
 
   return (
-    <section ref={sectionRef} id="how-it-works" className="py-20 md:py-32 bg-gradient-to-b from-secondary-50 via-background to-primary-50 relative overflow-hidden">
-      {/* Background elements */}
-      {/* FIX: Replaced styled-jsx with an inline style object to resolve TypeScript error. */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage:
-            'linear-gradient(to right, #f1f5f9 1px, transparent 1px), linear-gradient(to bottom, #f1f5f9 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-        }}
-      ></div>
-      <div className="absolute top-20 right-1/4 w-64 h-64 bg-accent-200 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div>
-      <div className="absolute bottom-20 left-1/4 w-64 h-64 bg-primary-200 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-pulse"></div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className={`text-center max-w-4xl mx-auto mb-20 transition-all duration-1000 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-primary-100 to-primary-200 border border-primary-300 mb-6">
-            <span className="text-sm font-semibold text-primary-700">Простота использования</span>
+    <section ref={sectionRef} id="how-it-works" className="py-20 md:py-24 bg-secondary">
+      <div className="container mx-auto px-6">
+        
+        {/* Clean header */}
+        <div className={`text-center max-w-4xl mx-auto mb-16 transition-all duration-1000 ease-out ${
+          isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-slate-50 border border-slate-200 mb-6">
+            <span className="text-sm font-medium text-[#0D2C54] uppercase tracking-wide">Простота использования</span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-primary mb-6">
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tighter text-primary mb-6 leading-tight">
             Как это работает?{' '}
-            <span className="bg-gradient-to-r from-accent-500 to-accent-600 bg-clip-text text-transparent">Проще некуда!</span>
+            <span 
+              className="bg-gradient-to-r bg-clip-text text-transparent"
+              style={{ backgroundImage: 'linear-gradient(135deg, #FFD100 0%, #E6B800 100%)' }}
+            >
+              Проще некуда!
+            </span>
           </h2>
           
-          <p className="text-xl text-muted-foreground leading-relaxed">
+          <p className="text-lg text-muted-foreground leading-relaxed">
             Весь процесс полностью автоматизирован и занимает у клиента не больше минуты
           </p>
         </div>
 
-        {/* Interactive Steps */}
-        <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-16">
+        {/* Clean steps */}
+        <div className="relative mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {steps.map((step, index) => (
-              <InteractiveStep
+              <StepCard
                 key={index}
                 step={step}
                 index={index}
@@ -185,17 +190,19 @@ const HowItWorks: React.FC = () => {
             ))}
           </div>
 
-          {/* Progress indicator */}
-          <div className={`flex justify-center mt-12 transition-all duration-1000 delay-500 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          {/* Simple progress dots */}
+          <div className={`flex justify-center mt-8 transition-all duration-1000 delay-300 ${
+            isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}>
             <div className="flex items-center gap-2">
               {steps.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveStep(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`h-1.5 rounded-full transition-all duration-600 ${
                     activeStep === index 
-                      ? 'bg-accent-500 scale-125' 
-                      : 'bg-gray-300 hover:bg-gray-400'
+                      ? 'w-8 bg-[#0D2C54]' 
+                      : 'w-1.5 bg-slate-300 hover:bg-slate-400'
                   }`}
                 />
               ))}
@@ -203,22 +210,53 @@ const HowItWorks: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom CTA */}
-        <div className={`text-center mt-20 transition-all duration-1000 delay-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-primary mb-4">
-              Готовы попробовать?
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Настройка занимает 24 часа. Никаких сложных интеграций - мы все сделаем за вас.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-6 py-3 bg-gradient-to-r from-accent-500 to-accent-400 text-accent-foreground font-bold rounded-lg hover:from-accent-600 hover:to-accent-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                Получить демо
-              </button>
-              <button className="px-6 py-3 border-2 border-primary-200 text-primary-600 font-semibold rounded-lg hover:bg-primary-50 hover:border-primary-300 transition-all duration-300">
-                Узнать больше
-              </button>
+        {/* Different CTA approach - horizontal layout */}
+        <div className={`transition-all duration-1000 delay-500 ${
+          isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`}>
+          <div className="bg-white rounded-xl border border-slate-200 p-6 md:p-8 shadow-sm">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="text-center md:text-left">
+                <h3 className="text-xl font-bold text-primary mb-2">
+                  Готовы увидеть Motor Mind в действии?
+                </h3>
+                <p className="text-muted-foreground">
+                  Настройка занимает 24 часа. Никаких сложных интеграций.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button 
+                  onClick={onConnectClick}
+                  className="inline-flex items-center gap-2 justify-center rounded-md text-sm font-bold h-11 px-6 transition-all duration-600 hover:scale-105"
+                  style={{ 
+                    backgroundColor: '#FFD100',
+                    color: '#0D2C54',
+                    boxShadow: '0 3px 0 #E6B800'
+                  }}
+                  onMouseDown={(e) => {
+                    e.currentTarget.style.transform = 'translateY(1px) scale(1.05)';
+                    e.currentTarget.style.boxShadow = '0 2px 0 #E6B800';
+                  }}
+                  onMouseUp={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                    e.currentTarget.style.boxShadow = '0 3px 0 #E6B800';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.boxShadow = '0 3px 0 #E6B800';
+                  }}
+                >
+                  Получить демо
+                </button>
+                
+                <a 
+                  href="#pricing"
+                  className="inline-flex items-center justify-center rounded-md text-sm font-semibold h-11 px-6 border border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all duration-600"
+                >
+                  Смотреть тарифы
+                </a>
+              </div>
             </div>
           </div>
         </div>
