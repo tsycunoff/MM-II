@@ -108,7 +108,9 @@ const AnchorNavigation: React.FC = () => {
       return;
     }
 
-    const element = document.getElementById(sectionId);
+    // Исправляем ID для SaaS секции
+    const targetId = sectionId === 'saas' ? 'saas' : sectionId;
+    const element = document.getElementById(targetId);
     if (element) {
       const headerHeight = 80;
       const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
@@ -137,13 +139,13 @@ const AnchorNavigation: React.FC = () => {
         
         {/* Главный контейнер - компактный */}
         <div className="relative bg-white/90 backdrop-blur-lg border border-slate-200/60 rounded-lg p-1 shadow-lg">
-          {/* Индикатор активной секции - фирменный синий */}
+          {/* Индикатор активной секции - ЖЕЛТАЯ ЧЕРТА */}
           <div 
             className="absolute left-0.5 w-0.5 rounded-full transition-all duration-400 ease-out"
             style={{
               height: '14px',
               top: `${4 + sections.findIndex(s => s.id === activeSection) * 20}px`,
-              background: 'linear-gradient(to bottom, #0D2C54, #183A68)'
+              background: 'linear-gradient(to bottom, #FFD100, #E6B800)'
             }}
           />
           

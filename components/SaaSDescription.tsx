@@ -103,7 +103,7 @@ const SaaSDescription: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-24 bg-background relative overflow-hidden">
+    <section ref={sectionRef} id="saas" className="py-20 md:py-24 bg-background relative overflow-hidden">
       {/* Subtle background elements */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div 
@@ -138,13 +138,6 @@ const SaaSDescription: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 mb-6">
-            <div 
-              className="w-2 h-2 rounded-full animate-pulse"
-              style={{ backgroundColor: '#0D2C54' }}
-            />
-            <span className="text-sm font-medium text-[#0D2C54] uppercase tracking-wide">Современное решение</span>
-          </div>
           
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tighter text-primary leading-tight mb-6">
             Что такое{' '}
