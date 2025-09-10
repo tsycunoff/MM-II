@@ -9,23 +9,23 @@ const ProblemCard: React.FC<{
   delay: number;
 }> = ({ icon, title, description, impact, isVisible, delay }) => (
   <div
-    className={`group relative bg-white border border-slate-100 rounded-lg p-6 transition-all duration-700 transform hover:shadow-lg hover:shadow-slate-900/5 hover:-translate-y-0.5 hover:border-slate-200 ${
+    className={`group relative bg-white border border-slate-100 rounded-xl p-6 transition-all duration-700 transform hover:shadow-lg hover:shadow-slate-900/5 hover:-translate-y-1 hover:scale-[1.02] hover:border-slate-200 ${
       isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
     }`}
     style={{ transitionDelay: `${delay}ms` }}
   >
     <div className="flex items-start space-x-4">
       <div 
-        className="flex-shrink-0 w-10 h-10 rounded-md flex items-center justify-center text-white transition-transform duration-300 group-hover:scale-105"
-        style={{ backgroundColor: '#0D2C54' }}
+        className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center text-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-1 shadow-md"
+        style={{ background: 'linear-gradient(135deg, #0D2C54, #1a3a6b)' }}
       >
         {icon}
       </div>
       <div className="flex-1">
-        <h3 className="text-md font-semibold text-foreground mb-2 group-hover:text-[#0D2C54] transition-colors duration-300">
+        <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-[#0D2C54] transition-all duration-500 group-hover:scale-105">
           {title}
         </h3>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-4 group-hover:text-slate-600 transition-colors duration-500">
           {description}
         </p>
         <div className="flex items-center gap-2">
@@ -33,11 +33,25 @@ const ProblemCard: React.FC<{
             className="w-1.5 h-1.5 rounded-full"
             style={{ backgroundColor: '#FFD100' }}
           />
-          <span className="text-xs font-medium text-[#0D2C54] uppercase tracking-wider">
+          <span className="text-xs font-bold text-[#0D2C54] uppercase tracking-wider">
             {impact}
           </span>
         </div>
       </div>
+    </div>
+
+    {/* Accent line at bottom */}
+    <div 
+      className="absolute bottom-0 left-1/2 w-0 h-0.5 -translate-x-1/2 group-hover:w-16 transition-all duration-700 rounded-full"
+      style={{ backgroundColor: '#FFD100' }}
+    />
+
+    {/* Hover glow effect */}
+    <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+      <div 
+        className="absolute inset-0 rounded-xl blur-xl transform scale-110"
+        style={{ background: 'radial-gradient(circle at 30% 30%, rgba(13, 44, 84, 0.08), transparent 70%)' }}
+      />
     </div>
   </div>
 );
@@ -53,7 +67,7 @@ const Problems: React.FC = () => {
       description: 'Клиенты молча уходят к конкурентам, не высказав претензий. Вы даже не знаете, что потеряли их навсегда.',
       impact: 'Потеря до 68% клиентов',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
           <line x1="12" y1="9" x2="12" y2="13"/>
           <line x1="12" y1="17" x2="12.01" y2="17"/>
@@ -61,11 +75,11 @@ const Problems: React.FC = () => {
       ),
     },
     {
-      title: 'Скрытые причины недовольства',
+      title: 'Скрытые причины недовольства', 
       description: 'Без обратной связи невозможно улучшить сервис. Одни и те же ошибки повторяются снова и снова.',
       impact: 'Стагнация качества',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="10"/>
           <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
           <line x1="12" y1="17" x2="12.01" y2="17"/>
@@ -77,7 +91,7 @@ const Problems: React.FC = () => {
       description: 'Каждый ушедший клиент — это потерянные 50-150 тысяч рублей в год только с повторных обращений.',
       impact: 'До ₽2.5М потерь в год',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <line x1="12" y1="1" x2="12" y2="23"/>
           <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
         </svg>
@@ -88,10 +102,11 @@ const Problems: React.FC = () => {
       description: 'Привлечь нового клиента в 5-7 раз дороже, чем удержать существующего. А вы теряете их пачками.',
       impact: 'Рост расходов на рекламу',
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 15V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/>
-          <path d="M7 12h10"/>
-          <path d="M12 7v10"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5z"/>
+          <path d="M15.7 15.7 4.8 4.8"/>
+          <path d="M9.9 9.9a5 5 0 0 0 0 7.07"/>
         </svg>
       ),
     },
@@ -145,8 +160,15 @@ const Problems: React.FC = () => {
   }, [isInView, problems.length]);
 
   return (
-    <section ref={sectionRef} id="problems" className="py-20 md:py-24 bg-background">
-      <div className="container mx-auto px-6">
+    <section ref={sectionRef} id="problems" className="py-20 md:py-24 bg-background relative overflow-hidden">
+      
+      {/* Subtle background elements */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute top-10 left-10 w-72 h-72 bg-gradient-to-br from-[#0D2C54] to-[#FFD100] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-56 h-56 bg-gradient-to-tl from-[#FFD100] to-[#0D2C54] rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
         
         {/* Clean, focused header */}
         <div className="text-center max-w-4xl mx-auto mb-16">
@@ -194,13 +216,14 @@ const Problems: React.FC = () => {
           ))}
         </div>
 
-        {/* Premium solution showcase in brand colors */}
+        {/* Premium solution showcase */}
         <div className="relative">
           <div className="group bg-gradient-to-br from-[#0D2C54] to-[#1a3a6b] rounded-2xl p-8 md:p-12 shadow-xl overflow-hidden transition-all duration-600 ease-out hover:shadow-2xl hover:shadow-slate-900/20 cursor-pointer hover:scale-[1.01]">
+            
             {/* Subtle depth enhancement on hover */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#0D2C54]/0 to-[#1a3a6b]/0 group-hover:from-[#0D2C54]/30 group-hover:to-[#1a3a6b]/40 transition-all duration-600 ease-out rounded-2xl" />
             
-            {/* Enhanced decorative elements - blue grid for depth */}
+            {/* Enhanced decorative elements */}
             <div className="absolute top-0 right-0 w-64 h-64 opacity-5 group-hover:opacity-[0.12] transition-all duration-600 text-[#0D2C54]">
               <svg viewBox="0 0 200 200" className="w-full h-full">
                 <defs>
@@ -249,24 +272,56 @@ const Problems: React.FC = () => {
                   {' '}{solutions[focusedProblem].description}
                 </p>
 
-                {/* Enhanced trust indicators */}
+                {/* Enhanced trust indicators with real logos */}
                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                   <div className="flex items-center gap-3 transition-transform duration-600 group-hover:scale-105">
                     <div className="flex -space-x-1">
-                      {[1, 2, 3].map((i) => (
-                        <div 
-                          key={i} 
-                          className="w-8 h-8 rounded-full border-2 border-white/20 group-hover:border-white/40 flex items-center justify-center backdrop-blur-sm transition-all duration-600 group-hover:scale-110 group-hover:shadow-lg"
-                          style={{ 
-                            background: 'linear-gradient(135deg, #22c55e 0%, #FFD100 100%)',
-                            boxShadow: '0 0 0 0 rgba(255, 209, 0, 0)'
+                      {/* Real company logos with fallback */}
+                      <div className="w-8 h-8 bg-white rounded-full border-2 border-white/20 group-hover:border-white/40 flex items-center justify-center overflow-hidden transition-all duration-600 group-hover:scale-110 group-hover:shadow-lg">
+                        <img 
+                          src="https://pnevmopodveska1.ru/template/img/logo.svg" 
+                          alt="Автосервис"
+                          className="max-w-full max-h-full object-contain p-0.5"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            target.nextElementSibling!.className = 'w-full h-full bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold';
+                            (target.nextElementSibling as HTMLElement)!.textContent = 'A';
                           }}
-                        >
-                          <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
-                          </svg>
-                        </div>
-                      ))}
+                        />
+                        <div style={{ display: 'none' }}></div>
+                      </div>
+                      <div className="w-8 h-8 bg-white rounded-full border-2 border-white/20 group-hover:border-white/40 flex items-center justify-center overflow-hidden transition-all duration-600 group-hover:scale-110 group-hover:shadow-lg">
+                        <img 
+                          src="https://zfcenter.ru/sites/default/files/logo_1.png" 
+                          alt="Автосервис"
+                          className="max-w-full max-h-full object-contain p-0.5"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            target.nextElementSibling!.className = 'w-full h-full bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold';
+                            (target.nextElementSibling as HTMLElement)!.textContent = 'B';
+                          }}
+                        />
+                        <div style={{ display: 'none' }}></div>
+                      </div>
+                      <div className="w-8 h-8 bg-white rounded-full border-2 border-white/20 group-hover:border-white/40 flex items-center justify-center overflow-hidden transition-all duration-600 group-hover:scale-110 group-hover:shadow-lg">
+                        <img 
+                          src="https://fogel.com.ru/images/logo.png" 
+                          alt="Автосервис"
+                          className="max-w-full max-h-full object-contain p-0.5"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            target.nextElementSibling!.className = 'w-full h-full bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold';
+                            (target.nextElementSibling as HTMLElement)!.textContent = 'C';
+                          }}
+                        />
+                        <div style={{ display: 'none' }}></div>
+                      </div>
+                      <div className="w-8 h-8 bg-white/20 rounded-full border-2 border-white/20 group-hover:border-white/40 flex items-center justify-center transition-all duration-600 group-hover:scale-110 group-hover:shadow-lg">
+                        <span className="text-white text-xs font-bold">+</span>
+                      </div>
                     </div>
                     <span className="text-white/70 group-hover:text-white/90 text-sm font-medium transition-colors duration-600">
                       150+ автосервисов доверяют

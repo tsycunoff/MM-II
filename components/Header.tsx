@@ -68,12 +68,12 @@ const Header: React.FC<{ onConnectClick: () => void }> = ({ onConnectClick }) =>
         : 'border-transparent bg-background'
     }`}>
       <div className="container flex h-20 lg:h-24 items-center mx-auto px-6">
-        <a href="#" className="mr-8 flex items-center space-x-4 group" onClick={(e) => {
+        <a href="#" className="mr-8 flex items-center space-x-3 group" onClick={(e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}>
-          <LogoIcon className="h-16 w-auto text-primary transition-transform group-hover:scale-105" />
-          <span className="font-bold text-3xl text-primary">Motor Mind</span>
+          <LogoIcon className="h-12 w-auto text-primary transition-transform group-hover:scale-105" />
+          <span className="font-bold text-2xl text-primary">Motor Mind</span>
         </a>
         
         <div className="flex flex-1 items-center justify-end space-x-2">
