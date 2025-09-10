@@ -13,6 +13,7 @@ import CallToAction from './components/CallToAction';
 import SaaSDescription from './components/SaaSDescription';
 import ScrollProgress from './components/ScrollProgress';
 import AnchorNavigation from './components/AnchorNavigation';
+import IntegrationProcess from './components/IntegrationProcess';
 
 const RequestFormModal: React.FC<{ onClose: () => void }> = memo(({ onClose }) => {
     const [formData, setFormData] = useState({
@@ -75,7 +76,7 @@ const RequestFormModal: React.FC<{ onClose: () => void }> = memo(({ onClose }) =
                                     required 
                                     value={formData.name} 
                                     onChange={handleInputChange} 
-                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-all" 
+                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-all" 
                                     placeholder="Ваше имя" 
                                 />
                             </div>
@@ -88,7 +89,7 @@ const RequestFormModal: React.FC<{ onClose: () => void }> = memo(({ onClose }) =
                                     required 
                                     value={formData.phone} 
                                     onChange={handleInputChange} 
-                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-all" 
+                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-all" 
                                     placeholder="+7 (999) 123-45-67" 
                                 />
                             </div>
@@ -100,7 +101,7 @@ const RequestFormModal: React.FC<{ onClose: () => void }> = memo(({ onClose }) =
                                     type="email" 
                                     value={formData.email} 
                                     onChange={handleInputChange} 
-                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-all" 
+                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-all" 
                                     placeholder="your@email.com" 
                                 />
                             </div>
@@ -111,7 +112,7 @@ const RequestFormModal: React.FC<{ onClose: () => void }> = memo(({ onClose }) =
                                     name="telegram" 
                                     value={formData.telegram} 
                                     onChange={handleInputChange} 
-                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 transition-all" 
+                                    className="h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-all" 
                                     placeholder="@username" 
                                 />
                             </div>
@@ -120,7 +121,7 @@ const RequestFormModal: React.FC<{ onClose: () => void }> = memo(({ onClose }) =
                                 <button 
                                     type="submit" 
                                     disabled={isSubmitting} 
-                                    className="inline-flex items-center justify-center rounded-lg text-base font-bold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-yellow-400 text-blue-900 hover:bg-yellow-500 h-12 px-6 w-full shadow-lg group"
+                                    className="inline-flex items-center justify-center rounded-lg text-base font-bold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-accent text-accent-foreground hover:bg-accent/90 h-12 px-6 w-full shadow-lg group border-b-4 border-accent-dark active:border-b-0 active:translate-y-1"
                                 >
                                     {isSubmitting ? (
                                         <div className="flex items-center justify-center">
@@ -177,6 +178,7 @@ const App: React.FC = () => {
         <Results />
         <SaaSDescription />
         <Features />
+        <IntegrationProcess onConnectClick={openModal} />
         <Pricing onConnectClick={openModal} />
         <FAQ />
         <CallToAction onConnectClick={openModal} />
